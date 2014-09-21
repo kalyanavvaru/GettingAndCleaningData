@@ -1,6 +1,6 @@
 Tidy data output
 ==================================
- The tidy data generated contains summarized information about **subject** (identified by an id given to the subject), **activity_name** (identified by one of activities listed in the activity labels), **variable**( some of 561 features listed that represents some form of mean or standard deviation) and its **average** value among both test and train data.
+ The tidy data generated contains summarized information about **subject** (identified by an id given to the subject), **activity_name** (identified by one of activities listed in the activity labels), **variable**( some of 561 features listed that represents some form of mean or standard deviation of gyroscope and accelerometer) and its **average** value among both test and train data.
  
 The tidy data generated qualifies to be the tidy data as it confirms to the "tidy data" principles in the following ways.
 
@@ -11,13 +11,13 @@ The tidy data generated qualifies to be the tidy data as it confirms to the "tid
 
 
 Steps performed to achieve this "tidy" data was as follows
-* **read files** that are relevant to the assignments into dataframes. This includes X_train, Y_train, features, subject_train, activity_labels, X_test, Y_test, subject_test.
+* **read files** that are relevant to the assignments into dataframes. This includes files that represent X_train, Y_train, features, subject_train, activity_labels, X_test, Y_test, subject_test info.
 * **set colnames** of X_train and X_test to values in features dataframe.
-* **extract mean and sd columns** from X_train and X_test so that only columns that represent a variable that represents only mean and standard deviation of some obervation in the raw data supplied.
-* add subject info by **cbind**'ing X_train/X_test to have **subject** dataframe as additional column.
-* Translate the activity by joinig with activity_labels dataframe.
-* All the above steps were performed both on test and train data independently to reduce CPU/space complexity. 
-* After both train and test data is complete on its own, they are both joined to form a unison.
-* The data obtained in the above step will be melted(reshaped) so that device variable observations are strctured with subject and activity_name as facts and variable values as measures.
-* another sqldf operation was run on the above data structure so that the mean is calculated over observations group by subject, activity_name,variable.
-* data is writted to the file.
+* **extract "mean" and "sd" columns** from X_train and X_test in the raw data supplied.
+* add subject identity info by **cbind**'ing X_train/X_test to have **subject** dataframe as additional column.
+* Translate the activity number into descriptive by joining with activity_labels dataframe.
+* All the above steps were performed both on test and train data independently to reduce CPU/space complexity, and ignored time complexity(as time is not a constraint for me, but system resources are for my computer).
+* After both train and test data is "complete" with subject and activity info, they are both joined to form a unison.
+* The data obtained in the above step will be melted(reshaped) so that device variable observations are strctured with subject and activity_name as facts and gyro/accelerometer observation variable as measures.
+* A sqldf operation was run on the above data structure so that the mean is calculated over observations group by subject, activity_name,variable.
+* data is written to the file.
