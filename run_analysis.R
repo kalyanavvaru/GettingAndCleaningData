@@ -65,7 +65,7 @@ melted_merged_data <- melt(merged_data,id=c("subject","activity_name"))
 melted_merged_data_summary <- sqldf("select subject, activity_name,variable,avg(value) 'average' from melted_merged_data group by subject, activity_name,variable order by 1,2,3")
 
 #write the newly created tidy data to file
-write.table(melted_merged_data_summary,"./data/result_tidy_data_2.txt");
+write.table(melted_merged_data_summary,"./data/result_tidy_data_2.txt",row.name=FALSE);
 #load and show the data in R studio
 data <- read.table("./data/result_tidy_data_2.txt", header = TRUE)
 View(data)
