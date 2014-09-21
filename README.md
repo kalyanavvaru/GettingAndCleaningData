@@ -15,7 +15,7 @@ Steps performed to achieve this "tidy" data was as follows
 * **set colnames** of X_train and X_test to values in features dataframe.
 * **extract mean and sd columns** from X_train and X_test so that only columns that represent a variable that represents only mean and standard deviation of some obervation in the raw data supplied.
 * add subject info by **cbind**'ing X_train/X_test to have **subject** dataframe as additional column.
-* Translate the **identity to be descriptive** activity labels by joinig with activity_labels dataframe.
+* Translate the activity by joinig with activity_labels dataframe.
 * All the above steps were performed both on test and train data independently to reduce CPU/space complexity. 
 * After both train and test data is complete on its own, they are both joined to form a unison.
 * The data obtained in the above step will be melted(reshaped) so that device variable observations are strctured with subject and activity_name as facts and variable values as measures.
